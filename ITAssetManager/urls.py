@@ -6,7 +6,6 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path("", home, name="home"),
-    path('load-my-data/', load_db_view),
     path("admin/", admin.site.urls),
     path("users/", include("users.urls")),
     path("assets/", include("itassets.urls")), #connects it assets
