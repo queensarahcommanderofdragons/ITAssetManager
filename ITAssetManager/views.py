@@ -12,7 +12,7 @@ def load_db_view(request):
             data = f.read()
         stream = io.StringIO(data)
         stream.name = 'db_utf16.json'
-        call_command('loaddata', stream, format='json')
+        call_command('loaddata', stream)
         return HttpResponse("Data loaded successfully into PostgreSQL.")
     except Exception as e:
         return HttpResponse(f" Error: {e}")
