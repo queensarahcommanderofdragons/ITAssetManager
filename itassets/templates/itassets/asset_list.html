@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>IT Assets</h2>
+<p></p>
+<p></p>
+     <!-- Search and Filters -->
+<form method="GET">
+    <input type="text" name="q" placeholder="Search assets..." value="{{ query }}">
+    <!--  Filter by Status -->
+    <label for="status">Filter by Status:</label>
+    <select name="status">
+        <option value="all" {% if status_filter == "all" %}selected{% endif %}>All</option>
+        <option value="active" {% if status_filter == "active" %}selected{% endif %}>Active</option>
+        <option value="inactive" {% if status_filter == "inactive" %}selected{% endif %}>Inactive</option>
+    </select>
+    <!-- Filter by Assigned User -->
+    <label for="assigned_to">Filter by Assigned User:</label>
+    <input type="text" name="assigned_to" placeholder="Username" value="{{ filter_user }}">
+    <button type="submit">Apply Filters</button>
+</form>
+    <!-- Sorting Options -->
+<p>Sort by:
+    <a href="?sort=asset_id">Asset ID</a> |
+    <a href="?sort=status">Status</a>
+</p>
+<p></p>
+<p></p>
+    <!-- Add New Asset Option -->
+<a href="{% url 'asset_create' %}" class = "btn btn-primary">Add New Asset</a>
+     <!-- Asset List -->
+<p></p>
+<p></p>
+<ul>
+    {% for asset in assets %}
+        <li><h5><a href="{%url 'asset_detail' asset.pk%}">{{ asset.asset_name }}</a> - {{ asset.asset_type }} -{{ asset.status }}</h5>
+            {% if user.is_staff %}
+            <p></p>
+                <a href="{% url 'asset_update' asset.pk %}" class = "btn btn-secondary">Edit</a>
+                <a href="{% url 'asset_delete' asset.pk %}" class = "btn btn-secondary">Delete</a>
+            <p></p>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+<p></p>
+<p></p>
+{% if user.is_staff %}
+    <h3>Recent Asset Changes</h3>
+    <ul>
+        {% for history in asset.assethistory_set.all %}
+            <li>{{ history.change_date }} - {{ history.change_details }} by {{ history.changed_by }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+<p></p>
+<p></p>
+{% if user.is_staff %}
+    <a href="{%url 'export_assets_csv' %}" class="btn btn-primary">Download CSV</a>
+{% endif %}
+{% endblock %}

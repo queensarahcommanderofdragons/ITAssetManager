@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+
+<h2>{{ user.fullname }}'s Profile</h2>
+<p></p>
+<p></p>
+<ul>
+    <li><strong>Department:</strong> {{ user.department}}</li>
+    <li><strong>Email:</strong> {{ user.email}}</li>
+    <li><strong>Phone of Contact:</strong> {{ user.phone}}</li>
+</ul>
+
+<p></p>
+<p></p>
+
+<h5>{{user.username }}'s Assigned Assets</h5>
+<p></p>
+<p></p>
+{% if assets %}
+<ul>
+    {% for asset in assets %}
+    <li><a href="{% url 'asset_detail' asset.pk %}"> {{ asset.asset_name }}<a/> - {{ asset.asset_type}} - {{asset.status}}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>No Assets assigned to this user.</p>
+{% endif %}
+<p></p>
+<p></p>
+<a href="{% url 'user_list' %}" class="btn btn-secondary">Back to Users</a>
+{% endblock %}

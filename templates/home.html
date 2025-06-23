@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>Welcome to IT Asset Manager</h1>
+    <p>I hope that you are having a wonderful today. This it FHDC's brand new Asset Manager for the more specialised assets. Use the links below to navigate.</p>
+    <p><strong>Manage and track assets efficiently</strong></p>
+    <a href="{% url 'asset_list' %}">View Assets</a>
+    <p><strong>Manage and track Users efficiently</strong></p>
+    <a href="{% url 'user_list' %}">View Users</a>
+{% endblock %}

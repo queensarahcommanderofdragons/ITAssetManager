@@ -1,0 +1,19 @@
+
+{% extends "base.html" %}
+{% block content %}
+<h2>Confirm Delete</h2>
+<p></p>
+<p></p>
+<p>Are you sure you want to delete {{ asset.asset_name }}?</p>
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Yes, Delete</button>
+</form>
+<p></p>
+<p></p>
+<h5>Please click the below button to return to the previous page</h5>
+<p></p>
+<p></p>
+<a href="{% url 'asset_list' %}" class="btn btn-secondary">Cancel</a>
+
+{% endblock %}

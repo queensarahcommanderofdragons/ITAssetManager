@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{% if form.instance.pk %}Edit User{% else %}Add New User{% endif %}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">Save</button>
+    </form>
+<p></p>
+<p></p>
+    {% if form.instance.pk %}
+        <form method="POST" action="{%url 'user_Delete' form.instanace.pk %}" style="margin-top: 10px;">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete User</button>
+        </form>
+    {% endif %}
+<p></p>
+<p></p>
+    <p><a href="{% url 'user_list' %}"> Back to User List</a></p>
+{% endblock %}

@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{% if form.instance.pk %}Edit User{% else %}Add New User{% endif %}</h2>
+<p></p>
+<p></p>
+<form method="POST">
+    {% csrf_token %}
+    <!-- it did not render properly thus rendering each -->
+    {{ form.as_p}}
+    <button type="submit">Save</button>
+</form>
+<p></p>
+<p></p>
+<p><a href="{% url 'user_create' %}">Add New User</a></p>
+{% endblock %}

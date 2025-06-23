@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>{{ asset.asset_name }}</h2>
+<p></p>
+<p></p>
+<ul>
+    <li><strong>Type:</strong> {{ asset.asset_type}} </li>
+    <li><strong>Status:</strong> {{ asset.status}} </li>
+    <li><strong>Assigned To:</strong>
+        <a href="{% url 'user_assets' asset.assigned_to.username %}">{{ asset.assigned_to.username }}</a> </li>
+    <li><strong>Purchase Date:</strong> {{ asset.purchase_date}} </li>
+</ul>
+<p></p>
+<p></p>
+<a href="{% url 'asset_list' %}" class="btn btn-primary">Back to Assets</a>
+{% endblock %}
