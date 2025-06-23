@@ -5,6 +5,7 @@ from .forms import AssetForm, UserForm
 import csv
 from django.http import HttpResponse
 from itassets.models import Asset, InventoryUser
+from django.core.management import call_command
 
 from .models import InventoryUser
 
@@ -185,3 +186,12 @@ def asset_detail(request, pk):
     asset = get_object_or_404(Asset, pk=pk)
 
     return render(request, "itassets/asset_detail.html", {"asset": asset})
+
+
+
+def load_db_view(request):
+    try:
+        call_command('loaddata', 'db.json')
+        return HttpResponse("Data loaded successfully into PostgreSQL.")
+    except Exception as e:
+        return HttpResponse(f" Error: {e}")
