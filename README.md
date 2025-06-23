@@ -30,9 +30,6 @@ pip install -r requirements.txt
 python manage.py migrate
 python manage.py runserver
 
-  - To populate with demo data:
-        python manage.py loaddata db.json
-
 This app is hosted on Render using:
 - A free web service (for the Django app)
 - A managed PostgreSQL database
