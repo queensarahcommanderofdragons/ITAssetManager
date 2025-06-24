@@ -1,8 +1,6 @@
 This is a Django-based web application that allows my organisation to track IT assets and assign them to Inventory users. 
 Features include asset registration, assigment to inventory users, status tracking, assignment history, and a user-friendly admin panel with role-based permissions.
 
-You can access the deployed version here:
-https://itassetmanager-y617.onrender.com/
 
 Features:
 - Secure user authentication and Django admin interface
